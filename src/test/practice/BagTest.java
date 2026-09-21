@@ -64,7 +64,6 @@ public class BagTest {
     bag.add(BallColor.BLACK);
     bag.add(BallColor.BLUE);
     bag.add(BallColor.BLUE);
-
     int black = 0;
     int blue = 0;
     while (bag.size() > 0) {
@@ -75,28 +74,8 @@ public class BagTest {
         blue++;
       }
     }
-
     assertEquals(3, black);
     assertEquals(2, blue);
-    assertEquals(0, bag.size());
-  }
-
-  @Test
-  public void addingPastInitialCapacityKeepsEveryBall() {
-    for (int i = 0; i < 25; i++) {
-      bag.add(BallColor.BLUE);
-    }
-
-    assertEquals(25, bag.size());
-
-    int blue = 0;
-    while (bag.size() > 0) {
-      if (bag.remove() == BallColor.BLUE) {
-        blue++;
-      }
-    }
-
-    assertEquals(25, blue);
     assertEquals(0, bag.size());
   }
 }

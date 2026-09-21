@@ -2,35 +2,54 @@ package practice;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 /**
  * Implementation-specific tests for ArrayBag. They rely on its seeded constructor,
- * on how it stores balls, and on remove using rng.nextInt(size). With seed 2, the
- * first nextInt(2) returns 1 and the next nextInt(1) returns 0.
+ * on remove using rng.nextInt(size), and on remove filling the gap with the last
+ * ball.
  */
-public class ArrayBagTest {
+public class ArrayBagTest extends BagTest {
 
-  @Test
-  public void seededRemoveDrawsPredictableBall() {
-    ArrayBag bag = new ArrayBag(2);
-    bag.add(BallColor.BLACK);  // index 0
-    bag.add(BallColor.BLUE);   // index 1
+  private static final long SEED = 226;
+  private static final int BALLS = 5;
 
-    assertEquals(BallColor.BLUE, bag.remove());
-    assertEquals(1, bag.size());
+  // drawnIndex[i] is the index that the i-th call to remove will draw
+  private static int[] drawnIndex;
+
+  @BeforeAll
+  public static void computeDraws() {
+    Random reference = new Random(SEED);
+    drawnIndex = new int[BALLS];
+    for (int i = 0; i < BALLS; i++) {
+      drawnIndex[i] = reference.nextInt(BALLS - i);  // the bag has one fewer ball each draw
+    }
   }
 
   @Test
-  public void seededRemoveSequenceIsRepeatable() {
-    ArrayBag bag = new ArrayBag(2);
-    bag.add(BallColor.BLACK);
-    bag.add(BallColor.BLUE);
+  public void seededRemoveFollowsTheKnownDraws() {
+    ArrayBag bag = new ArrayBag(SEED);
+    List<BallColor> expected = new ArrayList<>();
+    BallColor[] balls = {
+      BallColor.BLACK, BallColor.BLUE, BallColor.BLUE, BallColor.BLACK, BallColor.BLUE
+    };
+    for (BallColor ball : balls) {
+      bag.add(ball);
+      expected.add(ball);
+    }
 
-    // First draw takes index 1 (BLUE) and fills the gap with the last ball,
-    // leaving BLACK; the next draw must return BLACK.
-    assertEquals(BallColor.BLUE, bag.remove());
-    assertEquals(BallColor.BLACK, bag.remove());
-    assertEquals(0, bag.size());
+    for (int i = 0; i < BALLS; i++) {
+      int index = drawnIndex[i];
+      BallColor want = expected.get(index);
+      expected.set(index, expected.get(expected.size() - 1));  // fill the gap with the last ball
+      expected.remove(expected.size() - 1);
+
+      assertEquals(want, bag.remove());
+      assertEquals(BALLS - i - 1, bag.size());
+    }
   }
 }
