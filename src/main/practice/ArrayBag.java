@@ -30,6 +30,9 @@ public class ArrayBag {
     size++;
   }
 
+  // Draws and removes a ball chosen uniformly at random. Order is not preserved,
+  // so the gap is filled with the last ball instead of shifting. Throws
+  // IllegalStateException if the bag is empty.
   public BallColor remove() {
     if (size == 0) {
       throw new IllegalStateException("the bag is empty");

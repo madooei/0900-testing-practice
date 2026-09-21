@@ -53,10 +53,4 @@ public class BagTest {
     // TODO: Implement me
     throw new UnsupportedOperationException("TODO: Implement me");
   }
-
-  @Test
-  public void addingPastInitialCapacityKeepsEveryBall() {
-    // TODO: Implement me
-    throw new UnsupportedOperationException("TODO: Implement me");
-  }
 }
