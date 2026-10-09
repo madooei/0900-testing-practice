@@ -1,7 +1,11 @@
 package practice;
 
 /** A small demo of the Bag. The draw order changes from run to run. */
-public class PracticeMain {
+public final class BagDemo {
+
+  private BagDemo() {
+    // This class should not be instantiated!
+  }
 
   public static void main(String[] args) {
     Bag bag = new Bag();

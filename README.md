@@ -23,7 +23,7 @@ code/
         BallColor.java          # the two ball colors
         Bag.java                # unordered collection; remove draws at random
         ArrayBag.java           # Bag with a seeded constructor
-        PracticeMain.java       # demo entry point
+        BagDemo.java            # demo entry point
         MaxList.java            # List<Integer> + getMax (cumulative max)
         MaxArrayList.java       # array-based MaxList (parallel max array)
         MaxLinkedList.java      # linked MaxList (per-node maxPointer)
@@ -37,7 +37,7 @@ code/
         MaxArrayListTest.java   # runs both suites against MaxArrayList
         MaxLinkedListTest.java  # runs both suites against MaxLinkedList
   scripts/
-    run.sh                      # compile and run the Bag demo (practice.PracticeMain)
+    run.sh                      # compile and run the Bag demo (practice.BagDemo)
     test.sh                     # compile and run every JUnit test
 ```
 
@@ -45,7 +45,7 @@ code/
 
 - `scripts/test.sh` — compiles everything and runs the full JUnit suite.
 - `scripts/test.sh practice.ArrayBagTest` — compiles everything and runs only that test class. Use this while you are working on one problem and the other is still empty. For `MaxList`, use `practice.MaxArrayListTest` or `practice.MaxLinkedListTest`.
-- `scripts/run.sh` — compiles everything and runs the `PracticeMain` demo.
+- `scripts/run.sh practice.BagDemo` — compiles everything and runs the `BagDemo` demo.
 
 ## What's here
 
@@ -54,7 +54,7 @@ code/
 - `practice.Bag` — an unordered bag of `BallColor` with `add`, `remove` (draws a ball uniformly at random, throws `IllegalStateException` when empty), and `size`.
 - `practice.ArrayBag` — the same operations, plus a seeded constructor that makes its draws repeatable.
 - `practice.BallColor` — the two-value enum the bag stores.
-- `practice.PracticeMain` — a runnable demo of the bag.
+- `practice.BagDemo` — a runnable demo of the bag.
 - `practice.BagTest` — contract tests for `Bag` that hold on every random draw.
 - `practice.ArrayBagTest` — implementation-specific tests that use a seeded `ArrayBag` to replay an exact sequence of draws.
 - `practice.MaxList` — a `List<Integer>` with `getMax(index)`, the largest value among positions 0 through `index`.
