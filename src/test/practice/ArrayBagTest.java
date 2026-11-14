@@ -35,7 +35,7 @@ public class ArrayBagTest extends BagTest {
     ArrayBag bag = new ArrayBag(SEED);
     List<BallColor> expected = new ArrayList<>();
     BallColor[] balls = {
-      BallColor.BLACK, BallColor.BLUE, BallColor.BLUE, BallColor.BLACK, BallColor.BLUE
+      BallColor.BLACK, BallColor.BLUE, BallColor.BLUE, BallColor.BLACK, BallColor.BLACK
     };
     for (BallColor ball : balls) {
       bag.add(ball);
