@@ -1,6 +1,9 @@
-package practice;
+package demo;
 
-/** A small demo of the Bag. The draw order changes from run to run. */
+import practice.Bag;
+import practice.BallColor;
+
+/** A demo of Bag: add three balls and draw them all. The draw order changes from run to run. */
 public final class BagDemo {
 
   private BagDemo() {
