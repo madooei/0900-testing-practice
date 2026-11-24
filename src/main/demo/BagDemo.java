@@ -1,5 +1,6 @@
 package demo;
 
+import practice.ArrayBag;
 import practice.Bag;
 import practice.BallColor;
 
@@ -11,7 +12,7 @@ public final class BagDemo {
   }
 
   public static void main(String[] args) {
-    Bag bag = new Bag();
+    Bag bag = new ArrayBag();
     bag.add(BallColor.BLACK);
     bag.add(BallColor.BLACK);
     bag.add(BallColor.BLUE);

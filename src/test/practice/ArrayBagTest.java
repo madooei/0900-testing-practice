@@ -9,9 +9,9 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 /**
- * Implementation-specific tests for ArrayBag. They rely on its seeded constructor,
- * on remove using rng.nextInt(size), and on remove filling the gap with the last
- * ball.
+ * Runs the Bag contract tests against ArrayBag, and adds implementation-specific
+ * tests. Those rely on its seeded constructor, on remove using rng.nextInt(size),
+ * and on remove filling the gap with the last ball.
  */
 public class ArrayBagTest extends BagTest {
 
@@ -25,6 +25,11 @@ public class ArrayBagTest extends BagTest {
   public static void computeDraws() {
     // TODO: Implement me
     throw new UnsupportedOperationException("TODO: Implement me");
+  }
+
+  @Override
+  protected Bag createBag() {
+    return new ArrayBag();
   }
 
   @Test
