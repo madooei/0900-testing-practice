@@ -7,16 +7,20 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 /**
- * Contract tests for Bag. Since remove draws at random, they assert what holds on
- * every draw instead of which ball comes out.
+ * Contract tests for the Bag ADT, written against the Bag interface. A concrete
+ * subclass supplies createBag() to pick the implementation. Since remove draws at
+ * random, the tests assert what holds on every draw instead of which ball comes
+ * out.
  */
-public class BagTest {
+public abstract class BagTest {
 
   private Bag bag;
 
+  protected abstract Bag createBag();
+
   @BeforeEach
   public void setup() {
-    bag = new Bag();
+    bag = createBag();
   }
 
   @Test

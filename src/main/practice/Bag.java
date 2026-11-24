@@ -1,52 +1,31 @@
 package practice;
 
-import java.util.Random;
+/**
+ * A Bag is an unordered collection of colored balls. You add balls to it, and
+ * you draw one out at random.
+ */
+public interface Bag {
 
-/** An unordered bag of colored balls; remove draws one uniformly at random. */
-public class Bag {
+  /**
+   * Put a ball in this bag.
+   *
+   * @param ball the ball to add.
+   */
+  void add(BallColor ball);
 
-  private BallColor[] balls;
-  private int size;
-  private Random rng;
+  /**
+   * Draw a ball chosen uniformly at random, take it out of this bag, and return
+   * it.
+   *
+   * @return the ball that was drawn.
+   * @throws IllegalStateException if this bag is empty.
+   */
+  BallColor remove();
 
-  public Bag() {
-    balls = new BallColor[10];
-    size = 0;
-    rng = new Random();
-  }
-
-  public void add(BallColor ball) {
-    if (size == balls.length) {
-      grow();
-    }
-    balls[size] = ball;
-    size++;
-  }
-
-  // Draws and removes a ball chosen uniformly at random. Order is not preserved,
-  // so the gap is filled with the last ball instead of shifting. Throws
-  // IllegalStateException if the bag is empty.
-  public BallColor remove() {
-    if (size == 0) {
-      throw new IllegalStateException("the bag is empty");
-    }
-    int i = rng.nextInt(size);
-    BallColor drawn = balls[i];
-    balls[i] = balls[size - 1];
-    size--;
-    balls[size] = null;
-    return drawn;
-  }
-
-  public int size() {
-    return size;
-  }
-
-  private void grow() {
-    BallColor[] bigger = new BallColor[balls.length * 2];
-    for (int i = 0; i < size; i++) {
-      bigger[i] = balls[i];
-    }
-    balls = bigger;
-  }
+  /**
+   * Return the number of balls in this bag.
+   *
+   * @return the number of balls.
+   */
+  int size();
 }

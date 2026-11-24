@@ -2,8 +2,8 @@ package practice;
 
 import java.util.Random;
 
-/** A Bag with a seeded constructor, so a test can make its random draws repeatable. */
-public class ArrayBag {
+/** An array-backed Bag, with a seeded constructor so a test can make its random draws repeatable. */
+public class ArrayBag implements Bag {
 
   private BallColor[] balls;
   private int size;
@@ -22,6 +22,7 @@ public class ArrayBag {
     rng = new Random(seed);
   }
 
+  @Override
   public void add(BallColor ball) {
     if (size == balls.length) {
       grow();
@@ -30,9 +31,9 @@ public class ArrayBag {
     size++;
   }
 
-  // Draws and removes a ball chosen uniformly at random. Order is not preserved,
-  // so the gap is filled with the last ball instead of shifting. Throws
-  // IllegalStateException if the bag is empty.
+  // Order is not preserved, so the gap is filled with the last ball instead of
+  // shifting.
+  @Override
   public BallColor remove() {
     if (size == 0) {
       throw new IllegalStateException("the bag is empty");
@@ -45,6 +46,7 @@ public class ArrayBag {
     return drawn;
   }
 
+  @Override
   public int size() {
     return size;
   }
